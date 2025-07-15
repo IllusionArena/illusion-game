@@ -2085,8 +2085,13 @@ int FindHumanTeamLeader(bot_state_t *bs) {
 						ClientName(i, bs->teamleader, sizeof(bs->teamleader));
 						// if not yet ordered to do anything
 						if ( !BotSetLastOrderedTask(bs) ) {
+#ifdef MISSIONPACK
 							// go on defense by default
-							if (bot_nochat.integer<3)BotVoiceChat_Defend(bs, i, SAY_TELL);
+							BotVoiceChat_Defend(bs, i, SAY_TELL);
+#else
+							// Nothing!
+							return qfalse;
+#endif
 						}
 						return qtrue;
 					}

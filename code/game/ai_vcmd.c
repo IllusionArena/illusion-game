@@ -54,6 +54,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "syn.h"				//synonyms
 #include "match.h"				//string matching types and vars
 
+#ifdef MISSIONPACK
 // for the voice chats
 #include "../../ui/menudef.h"
 
@@ -529,3 +530,4 @@ int BotVoiceChatCommand(bot_state_t *bs, int mode, char *voiceChat) {
 	}
 	return qfalse;
 }
+#endif
