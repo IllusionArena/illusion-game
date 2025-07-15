@@ -106,7 +106,7 @@ vmCvar_t	g_enableBreath;
 vmCvar_t	g_proxMineTimeout;
 vmCvar_t	g_music;
 vmCvar_t        g_spawnprotect;
-//Following for elimination:
+// Following for elimination:
 vmCvar_t	g_elimination_selfdamage;
 vmCvar_t	g_elimination_startHealth;
 vmCvar_t	g_elimination_startArmor;
@@ -131,23 +131,23 @@ vmCvar_t        g_elimination_lockspectator;
 
 vmCvar_t	g_rockets;
 
-//dmn_clowns suggestions (with my idea of implementing):
+// dmn_clowns suggestions (with my idea of implementing):
 vmCvar_t	g_instantgib;
 vmCvar_t	g_vampire;
 vmCvar_t	g_vampireMaxHealth;
-//Regen
+// Regen
 vmCvar_t	g_regen;
-int	g_ffa_gt; //Are this a FFA gametype even if gametype is high?
+int	g_ffa_gt; // Are this a FFA gametype even if gametype is high?
 vmCvar_t	g_lms_lives;
 vmCvar_t	g_lms_mode;
 vmCvar_t	g_elimination_ctf_oneway;
-vmCvar_t        g_awardpushing; //The server can decide if players are awarded for pushing people in lave etc.
-vmCvar_t        g_persistantpowerups; //Allow missionpack style persistant powerups?
+vmCvar_t        g_awardpushing; // The server can decide if players are awarded for pushing people in lave etc.
+vmCvar_t        g_persistantpowerups; // Allow missionpack style persistant powerups?
 
-vmCvar_t        g_catchup; //Favors the week players
+vmCvar_t        g_catchup; // Favors the weak players
 
-vmCvar_t         g_autonextmap; //Autochange map
-vmCvar_t         g_mappools; //mappools to be used for autochange
+vmCvar_t         g_autonextmap; // Autochange map
+vmCvar_t         g_mappools; // mappools to be used for autochange
 
 vmCvar_t        g_voteNames;
 vmCvar_t        g_voteBan;
@@ -160,26 +160,26 @@ vmCvar_t        g_maxvotes;
 
 vmCvar_t        g_humanplayers;
 
-//used for voIP
+// Used for voIP
 vmCvar_t         g_redTeamClientNumbers;
 vmCvar_t         g_blueTeamClientNumbers;
 
-//unlagged - server options
+// unlagged - server options
 vmCvar_t	g_delagHitscan;
 vmCvar_t	g_truePing;
 vmCvar_t	sv_fps;
 vmCvar_t        g_lagLightning; //Adds a little lag to the lightninggun to make it less powerfull
-//unlagged - server options
-//KK-OAX
+// unlagged - server options
+// KK-OAX
 vmCvar_t        g_sprees;
 vmCvar_t        g_multiKill;
 vmCvar_t        g_spreeDiv;
 
-//Command/Chat spamming/flooding
+// Command/Chat spamming/flooding
 vmCvar_t        g_floodMaxDemerits;
 vmCvar_t        g_floodMinTime;
 
-//Admin
+// Admin
 vmCvar_t        g_admin;
 vmCvar_t        g_adminLog;
 vmCvar_t        g_adminParseSay;
@@ -265,10 +265,10 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_podiumDist, "g_podiumDist", "80", 0, 0, qfalse },
 	{ &g_podiumDrop, "g_podiumDrop", "70", 0, 0, qfalse },
 
-        //Votes start:
+        // Votes start:
 	{ &g_allowVote, "g_allowVote", "1", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qfalse },
         { &g_maxvotes, "g_maxVotes", MAX_VOTE_COUNT, CVAR_ARCHIVE, 0, qfalse },
-        { &g_voteNames, "g_voteNames", "/map_restart/nextmap/map/g_gametype/kick/clientkick/g_doWarmup/timelimit/fraglimit/shuffle/", CVAR_ARCHIVE, 0, qfalse }, //clientkick g_doWarmup timelimit fraglimit
+        { &g_voteNames, "g_voteNames", "/map_restart/nextmap/map/g_gametype/kick/clientkick/g_doWarmup/timelimit/fraglimit/shuffle/", CVAR_ARCHIVE, 0, qfalse },
         { &g_voteBan, "g_voteBan", "0", CVAR_ARCHIVE, 0, qfalse },
         { &g_voteGametypes, "g_voteGametypes", "/0/1/3/4/5/6/7/8/9/10/11/12/", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qfalse },
         { &g_voteMaxTimelimit, "g_voteMaxTimelimit", "1000", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qfalse },
@@ -313,7 +313,7 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_rankings, "g_rankings", "0", 0, 0, qfalse},
         { &g_music, "g_music", "", 0, 0, qfalse},
         { &g_spawnprotect, "g_spawnprotect", "500", CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue},
-	//Now for elimination stuff:
+	// Now for elimination stuff:
 	{ &g_elimination_selfdamage, "elimination_selfdamage", "0", 0, 0, qtrue },
 	{ &g_elimination_startHealth, "elimination_startHealth", "200", CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },
 	{ &g_elimination_startArmor, "elimination_startArmor", "200", CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },
@@ -341,18 +341,17 @@ static cvarTable_t		gameCvarTable[] = {
         
         { &g_awardpushing, "g_awardpushing", "1", CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },
 
-        //g_persistantpowerups
+        // g_persistantpowerups
         #ifdef MISSIONPACK
         { &g_persistantpowerups, "g_runes", "1", CVAR_LATCH, 0, qfalse },
         #else
         { &g_persistantpowerups, "g_runes", "0", CVAR_LATCH|CVAR_ARCHIVE, 0, qfalse },
         #endif
 
-
-	//nexuiz style rocket arena
+	// Nexuiz style rocket arena
 	{ &g_rockets, "g_rockets", "0", CVAR_SERVERINFO | CVAR_LATCH | CVAR_NORESTART, 0, qfalse },
 
-	//Instantgib and Vampire thingies
+	// Instantgib and Vampire thingies
 	{ &g_instantgib, "g_instantgib", "0", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
 	{ &g_vampire, "g_vampire", "0.0", CVAR_NORESTART, 0, qtrue },
 	{ &g_regen, "g_regen", "0", CVAR_NORESTART, 0, qtrue },
@@ -360,26 +359,29 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_lms_lives, "g_lms_lives", "1", CVAR_NORESTART, 0, qtrue },
 	{ &g_lms_mode, "g_lms_mode", "0", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },
 
+	// Favors the weak players
         { &g_catchup, "g_catchup", "0", CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue},
-
+	// Auto-change map & map pools to be used for auto-change
         { &g_autonextmap, "g_autonextmap", "0", CVAR_ARCHIVE | CVAR_NORESTART, 0, qfalse},
         { &g_mappools, "g_mappools", "0\\maps_dm.cfg\\1\\maps_tourney.cfg\\3\\maps_tdm.cfg\\4\\maps_ctf.cfg\\5\\maps_oneflag.cfg\\6\\maps_obelisk.cfg\
 \\7\\maps_harvester.cfg\\8\\maps_elimination.cfg\\9\\maps_ctf.cfg\\10\\maps_lms.cfg\\11\\maps_dd.cfg\\12\\maps_dom.cfg\\", CVAR_ARCHIVE | CVAR_NORESTART, 0, qfalse},
-        { &g_humanplayers, "g_humanplayers", "0", CVAR_ROM | CVAR_NORESTART, 0, qfalse },
-//used for voIP
+        
+	{ &g_humanplayers, "g_humanplayers", "0", CVAR_ROM | CVAR_NORESTART, 0, qfalse },
+	
+	// Used for voIP
         { &g_redTeamClientNumbers, "g_redTeamClientNumbers", "0",CVAR_ROM, 0, qfalse },
         { &g_blueTeamClientNumbers, "g_blueTeamClientNumbers", "0",CVAR_ROM, 0, qfalse },
         
-        //KK-OAX
+        // KK-OAX
         { &g_sprees, "g_sprees", "sprees.dat", 0, 0, qfalse },
         { &g_multiKill, "g_multiKill", "0", CVAR_SERVERINFO, 0, qtrue}, 
         { &g_spreeDiv, "g_spreeDiv", "5", 0, 0, qfalse},
         
-        //Used for command/chat flooding
+        // Used for command/chat flooding
         { &g_floodMaxDemerits, "g_floodMaxDemerits", "5000", CVAR_ARCHIVE, 0, qfalse  },
         { &g_floodMinTime, "g_floodMinTime", "2000", CVAR_ARCHIVE, 0, qfalse  },
         
-        //Admin
+        // Admin
         { &g_admin, "g_admin", "admin.dat", CVAR_ARCHIVE, 0, qfalse  },
         { &g_adminLog, "g_adminLog", "admin.log", CVAR_ARCHIVE, 0, qfalse  },
         { &g_adminParseSay, "g_adminParseSay", "1", CVAR_ARCHIVE, 0, qfalse  },
@@ -391,13 +393,12 @@ static cvarTable_t		gameCvarTable[] = {
         { &g_publicAdminMessages, "g_publicAdminMessages", "1", CVAR_ARCHIVE, 0, qfalse  },
         
         { &g_maxWarnings, "g_maxWarnings", "3", CVAR_ARCHIVE, 0, qfalse },
-	    { &g_warningExpire, "g_warningExpire", "3600", CVAR_ARCHIVE, 0, qfalse },
+       	{ &g_warningExpire, "g_warningExpire", "3600", CVAR_ARCHIVE, 0, qfalse },
 	    
-	    { &g_minNameChangePeriod, "g_minNameChangePeriod", "10", 0, 0, qfalse},
+    	{ &g_minNameChangePeriod, "g_minNameChangePeriod", "10", 0, 0, qfalse},
         { &g_maxNameChanges, "g_maxNameChanges", "50", 0, 0, qfalse},
 
         { &g_timestamp_startgame, "g_timestamp", "0001-01-01 00:00:00", CVAR_SERVERINFO, 0, qfalse}
-        
 };
 
 // bk001129 - made static to avoid aliasing
