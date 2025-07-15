@@ -40,7 +40,7 @@ static int genconst(Tree e, int def) {
 			if (isarith(e->type))
 				error("cast from `%t' to `%t' is illegal in constant expressions\n",
 					e->kids[0]->type, e->type);
-			/* fall thru */
+			/* fall through */
 		case CVI: case CVU: case CVF:
 			e = e->kids[0];
 			continue;
@@ -192,7 +192,7 @@ static int initstruct(int len, Type ty, int lev) {
 	return n;
 }
 
-/* initializer - constexpr | { constexpr ( , constexpr )* [ , ] } */
+/* initializer - constantexpr | { constantexpr ( , constantexpr )* [ , ] } */
 Type initializer(Type ty, int lev) {
 	int n = 0;
 	Tree e;

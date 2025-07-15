@@ -577,6 +577,7 @@ extern Tree cnsttree(Type, ...);
 extern Tree consttree(unsigned int, Type);
 extern Tree eqtree(int, Tree, Tree);
 extern int iscallb(Tree);
+extern int isnullptr(Tree);
 extern Tree shtree(int, Tree, Tree);
 extern void typeerror(int, Tree, Tree);
 
@@ -644,7 +645,7 @@ extern int process(char *);
 extern int findfunc(char *, char *);
 extern int findcount(char *, int, int);
 
-extern Tree constexpr(int);
+extern Tree constantexpr(int);
 extern int intexpr(int, int);
 extern Tree simplify(int, Type, Tree, Tree);
 extern int ispow2(unsigned long u);
