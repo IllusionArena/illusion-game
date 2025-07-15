@@ -626,7 +626,7 @@ Only in CTF games
 */
 	{
 		"team_CTF_redflag",
-		NULL,
+		"sound/misc/w_pkup.wav",
         { "models/flags/r_flag.md3",
 		NULL, NULL, NULL },
 /* icon */		"icons/iconf_red1",
@@ -643,7 +643,7 @@ Only in CTF games
 */
 	{
 		"team_CTF_blueflag",
-		NULL,
+		"sound/misc/w_pkup.wav",
         { "models/flags/b_flag.md3",
 		NULL, NULL, NULL },
 /* icon */		"icons/iconf_blu1",
