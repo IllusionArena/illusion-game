@@ -28,16 +28,13 @@ CREDITS
 =======================================================================
 */
 
-/*
- *Sago 2008-06-29: This is kinda annoying and does not really give usefull information anyway
- */
-
 
 #include "ui_local.h"
 
 
 typedef struct {
 	menuframework_s	menu;
+	int frame;
 } creditsmenu_t;
 
 static creditsmenu_t	s_credits;
@@ -52,9 +49,13 @@ static sfxHandle_t UI_CreditMenu_Key( int key ) {
 	if( key & K_CHAR_FLAG ) {
 		return 0;
 	}
+	s_credits.frame++;
 
-        //Sago: I no longer show credits on close. Consider something else if ingame credits are to be made
-	//trap_Cmd_ExecuteText( EXEC_APPEND, "quit\n" );
+	if (s_credits_frame == 1) {
+		s_credits.menu.draw = UI_CreditMenu_Draw;
+	} else {
+		trap_Cmd_ExecuteText( EXEC_APPEND, "quit\n" );
+	}
 	return 0;
 }
 
@@ -66,17 +67,26 @@ UI_CreditMenu_Draw
 */
 static void UI_CreditMenu_Draw( void ) {
 	int		y;
+	int		i;
 
-	y = 12;
-	UI_DrawProportionalString( 320, y, "Thank you for playing", UI_CENTER|UI_SMALLFONT, color_white );
-	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
-	UI_DrawProportionalString( 320, y, "Open Arena", UI_CENTER|UI_SMALLFONT, color_white );
-	
-	y += 228;
-	UI_DrawString( 320, y, "Terminating...", UI_CENTER|UI_SMALLFONT, color_red );
-        
-        y = 480 - PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
-	UI_DrawProportionalString( 320, y, "www.openarena.ws", UI_CENTER|UI_SMALLFONT, color_white );
+	static const char *names[] = {
+		"Izuru Yakumo (@IzuruYakumo)",
+		"Nishi (@NishiOwO)",
+		NULL
+	};
+
+	y = (SCREEN_HEIGHT - ARRAY_LEN(names) * (1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE)) / 2;
+
+	UI_DrawProportionalString( 320, y, "Illusion Arena developers:", UI_CENTER|UI_SMALLFONT, color_white );
+	y += 1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+
+	for (i = 0; names[i]; i++) {
+		UI_DrawProportionalString( 320, y, names[i], UI_CENTER|UI_SMALLFONT, color_white );
+		y += 1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	}
+
+	UI_DrawString( 320, 449, "Visit our website at:", UI_CENTER|UI_SMALLFONT, color_yellow );
+	UI_DrawString( 320, 459, "http://illusion-arena.twilightparadox.com/", UI_CENTER|UI_SMALLFONT, color_yellow );
 }
 
 
