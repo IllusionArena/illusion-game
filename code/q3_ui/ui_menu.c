@@ -55,7 +55,7 @@ typedef struct {
 	menutext_s		demos;
 	//menutext_s		cinematics;
         menutext_s              challenges;
-	menutext_s		teamArena;
+	//menutext_s		teamArena;
 	menutext_s		mods;
 	menutext_s		exit;
 
@@ -130,10 +130,10 @@ void Main_MenuEvent (void* ptr, int event) {
 		UI_ModsMenu();
 		break;
 
-	case ID_TEAMARENA:
+	/*case ID_TEAMARENA:
 		trap_Cvar_Set( "fs_game", "missionpack");
 		trap_Cmd_ExecuteText( EXEC_APPEND, "vid_restart;" );
-		break;
+		break;*/
 
 	case ID_EXIT:
 		//UI_ConfirmMenu( "EXIT GAME?", 0, MainMenu_ExitAction );
@@ -233,15 +233,7 @@ static void Main_MenuDraw( void ) {
 	}
 
 		UI_DrawProportionalString( 320, 372, "", UI_CENTER|UI_SMALLFONT, color );
-		UI_DrawString( 320, 400, "OpenArena(c) 2005-2012 OpenArena Team", UI_CENTER|UI_SMALLFONT, color );
-		UI_DrawString( 320, 414, "OpenArena comes with ABSOLUTELY NO WARRANTY; this is free software", UI_CENTER|UI_SMALLFONT, color );
-		UI_DrawString( 320, 428, "and you are welcome to redistribute it under certain conditions;", UI_CENTER|UI_SMALLFONT, color );
-		UI_DrawString( 320, 444, "read COPYING for details.", UI_CENTER|UI_SMALLFONT, color );
-                
-                //Draw version.
-                UI_DrawString( 640-40, 480-14, "^70.8.8", UI_SMALLFONT, color );
-                if((int)trap_Cvar_VariableValue("protocol")!=71)
-                    UI_DrawString( 0, 480-14, va("^7Protocol: %i",(int)trap_Cvar_VariableValue("protocol")), UI_SMALLFONT, color);
+		UI_DrawString( 320, 450, "Illusion Arena(c) 2025 Illusion Arena Developers", UI_CENTER|UI_SMALLFONT, color );
 }
 
 
@@ -381,7 +373,8 @@ void UI_MainMenu( void ) {
 	s_main.challenges.string				= "STATISTICS";
 	s_main.challenges.color					= color_red;
 	s_main.challenges.style					= style;
-
+	
+	/*
 	if (UI_TeamArenaExists()) {
 		teamArena = qtrue;
 		y += MAIN_MENU_VERTICAL_SPACING;
@@ -395,6 +388,7 @@ void UI_MainMenu( void ) {
 		s_main.teamArena.color					= color_red;
 		s_main.teamArena.style					= style;
 	}
+	*/
 
 	y += MAIN_MENU_VERTICAL_SPACING;
 	s_main.mods.generic.type			= MTYPE_PTEXT;
@@ -424,9 +418,11 @@ void UI_MainMenu( void ) {
 	Menu_AddItem( &s_main.menu,	&s_main.demos );
 	//Menu_AddItem( &s_main.menu,	&s_main.cinematics );
         Menu_AddItem( &s_main.menu,	&s_main.challenges );
+	/*
 	if (teamArena) {
 		Menu_AddItem( &s_main.menu,	&s_main.teamArena );
 	}
+	*/
 	Menu_AddItem( &s_main.menu,	&s_main.mods );
 	Menu_AddItem( &s_main.menu,	&s_main.exit );             
 
