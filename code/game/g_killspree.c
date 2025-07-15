@@ -77,9 +77,9 @@ qboolean G_ReadAltKillSettings( gentity_t *ent, int skiparg )
     // If the config file is not defined...forget reading/loading
     if( !g_sprees.string[0] ) {
         //Let's disable multikills to keep stock excellent sound
-        if( g_altExcellent.integer == 1 )
+        if( g_multiKill.integer == 1 )
         {
-            trap_Cvar_Set( "g_altExcellent", "0" );
+            trap_Cvar_Set( "g_multiKill", "0" );
         }
         return qfalse;
     }
@@ -105,7 +105,7 @@ qboolean G_ReadAltKillSettings( gentity_t *ent, int skiparg )
     //If the file can't be accessed/opened. 
     if( length < 0 ) {
         G_Printf( "Could not open configuration file for Sprees and Multikills %s\n", g_sprees.string );
-        trap_Cvar_Set( "g_altExcellent", "0" );
+        trap_Cvar_Set( "g_multiKill", "0" );
         return qfalse;
     }
     //Allocate some memory.
@@ -209,8 +209,8 @@ qboolean G_ReadAltKillSettings( gentity_t *ent, int skiparg )
         level.mKillUBound = -1;
         //KK-OAX We don't have any kills defined, revert to stock.
         //FIXME: Make sure this change shows up in the console... 
-        if( g_altExcellent.integer == 1 ) {
-            trap_Cvar_Set( "g_altExcellent", "0" );
+        if( g_multiKill.integer == 1 ) {
+            trap_Cvar_Set( "g_multiKill", "0" );
         }
              
     }

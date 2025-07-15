@@ -705,7 +705,7 @@ void player_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 			if ( level.time - attacker->client->lastKillTime < CARNAGE_REWARD_TIME ) {
 				// KK-OAX
 				// Check if Multikills are enabled
-				if( g_altExcellent.integer ) {
+				if( g_multiKill.integer ) {
 				    attacker->client->pers.multiKillCount++;
 				    G_checkForMultiKill( attacker );
 				} // play excellent on player

@@ -1125,7 +1125,7 @@ extern  vmCvar_t        g_lagLightning;
 //unlagged - server options
 //KK-OAX Killing Sprees
 extern  vmCvar_t    g_sprees; //Used for specifiying the config file
-extern  vmCvar_t    g_altExcellent; //Turns on Multikills instead of Excellent
+extern  vmCvar_t    g_multiKill; //Turns on Multikills instead of Excellent
 extern  vmCvar_t    g_spreeDiv; // Interval of a "streak" that form the spree triggers
 //KK-OAX Command/Chat Flooding/Spamming
 extern  vmCvar_t    g_floodMaxDemerits;

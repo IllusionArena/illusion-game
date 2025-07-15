@@ -172,7 +172,7 @@ vmCvar_t        g_lagLightning; //Adds a little lag to the lightninggun to make 
 //unlagged - server options
 //KK-OAX
 vmCvar_t        g_sprees;
-vmCvar_t        g_altExcellent;
+vmCvar_t        g_multiKill;
 vmCvar_t        g_spreeDiv;
 
 //Command/Chat spamming/flooding
@@ -372,7 +372,7 @@ static cvarTable_t		gameCvarTable[] = {
         
         //KK-OAX
         { &g_sprees, "g_sprees", "sprees.dat", 0, 0, qfalse },
-        { &g_altExcellent, "g_altExcellent", "0", CVAR_SERVERINFO, 0, qtrue}, 
+        { &g_multiKill, "g_multiKill", "0", CVAR_SERVERINFO, 0, qtrue}, 
         { &g_spreeDiv, "g_spreeDiv", "5", 0, 0, qfalse},
         
         //Used for command/chat flooding
