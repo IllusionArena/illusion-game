@@ -39,27 +39,6 @@ typedef struct {
 
 static creditsmenu_t	s_credits;
 
-
-/*
-=================
-UI_CreditMenu_Key
-=================
-*/
-static sfxHandle_t UI_CreditMenu_Key( int key ) {
-	if( key & K_CHAR_FLAG ) {
-		return 0;
-	}
-	s_credits.frame++;
-
-	if (s_credits_frame == 1) {
-		s_credits.menu.draw = UI_CreditMenu_Draw;
-	} else {
-		trap_Cmd_ExecuteText( EXEC_APPEND, "quit\n" );
-	}
-	return 0;
-}
-
-
 /*
 ===============
 UI_CreditMenu_Draw
@@ -89,6 +68,24 @@ static void UI_CreditMenu_Draw( void ) {
 	UI_DrawString( 320, 459, "http://illusion-arena.twilightparadox.com/", UI_CENTER|UI_SMALLFONT, color_yellow );
 }
 
+/*
+=================
+UI_CreditMenu_Key
+=================
+*/
+static sfxHandle_t UI_CreditMenu_Key( int key ) {
+        if( key & K_CHAR_FLAG ) {
+                return 0;
+        }
+        s_credits.frame++;
+
+        if (s_credits.frame == 1) {
+                s_credits.menu.draw = UI_CreditMenu_Draw;
+        } else {
+                trap_Cmd_ExecuteText( EXEC_APPEND, "quit\n" );
+        }
+        return 0;
+}
 
 /*
 ===============
