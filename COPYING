@@ -1,0 +1,21 @@
+----------[Illusion Arena License]----------
+
+Illusion Arena is licensed in two broadly separate sections: the code and the media. 
+
+The code is licensed under the GNU GENERAL PUBLIC LICENSE. 
+This license is contained in full in the file named GPL.
+Please be aware of the exceptions to this license as listed below.
+
+The media is licensed under the BSD 3-Clause "New" or "Revised" LICENSE. 
+Please read https://opensource.org/license/BSD-3-Clause to learn
+more about this license. The full license text is contained in the file named
+BSD.
+
+
+----------[Code License Exceptions]----------
+
+The following files contain sections of code that are not licensed under the
+GPL, but are nevertheless GPL compatible. The license text for these licenses
+is contained within the files as listed.
+
+    code/game/bg_lib.c                                            BSD license
