@@ -843,7 +843,6 @@ static void ServerOptions_Start( void ) {
 	int		timelimit;
 	int		fraglimit;
 	int		maxclients;
-//	int		dedicated;
 	int		friendlyfire;
 	int		flaglimit;
 	int		pure;
@@ -863,7 +862,6 @@ static void ServerOptions_Start( void ) {
 	timelimit	 = atoi( s_serveroptions.timelimit.field.buffer );
 	fraglimit	 = atoi( s_serveroptions.fraglimit.field.buffer );
 	flaglimit	 = atoi( s_serveroptions.flaglimit.field.buffer );
-//	dedicated	 = s_serveroptions.dedicated.curvalue;
 	friendlyfire = s_serveroptions.friendlyfire.curvalue;
 	pure		 = s_serveroptions.pure.curvalue;
         lan              = s_serveroptions.lan.curvalue;
@@ -932,13 +930,11 @@ static void ServerOptions_Start( void ) {
 	case GT_ELIMINATION:
 		trap_Cvar_SetValue( "ui_elimination_capturelimit", fraglimit );
 		trap_Cvar_SetValue( "ui_elimination_timelimit", timelimit );
-		//trap_Cvar_SetValue( "ui_elimination_friendly", friendlyfire );
 		break;
 
 	case GT_CTF_ELIMINATION:
 		trap_Cvar_SetValue( "ui_ctf_elimination_capturelimit", fraglimit );
 		trap_Cvar_SetValue( "ui_ctf_elimination_timelimit", timelimit );
-		//trap_Cvar_SetValue( "ui_ctf_elimination_friendly", friendlyfire );
 		break;
 
 	case GT_LMS:
@@ -954,7 +950,6 @@ static void ServerOptions_Start( void ) {
 	}
 
 	trap_Cvar_SetValue( "sv_maxclients", Com_Clamp( 0, 12, maxclients ) );
-//	trap_Cvar_SetValue( "dedicated", Com_Clamp( 0, 2, dedicated ) );
 	trap_Cvar_SetValue ("timelimit", Com_Clamp( 0, timelimit, timelimit ) );
 	trap_Cvar_SetValue ("fraglimit", Com_Clamp( 0, fraglimit, fraglimit ) );
 	trap_Cvar_SetValue ("capturelimit", Com_Clamp( 0, flaglimit, flaglimit ) );
@@ -1022,7 +1017,7 @@ static void ServerOptions_Start( void ) {
 	}
 
 	// set player's team
-	if( /*dedicated == 0 &&*/ s_serveroptions.gametype >= GT_TEAM && s_serveroptions.gametype != GT_LMS ) {
+	if( s_serveroptions.gametype >= GT_TEAM && s_serveroptions.gametype != GT_LMS ) {
 		trap_Cmd_ExecuteText( EXEC_APPEND, va( "wait 5; team %s\n", playerTeam_list[s_serveroptions.playerTeam[0].curvalue] ) );
 	}
 }
@@ -1055,14 +1050,11 @@ static void ServerOptions_InitPlayerItems( void ) {
 		}
 	}
 
-	// if not a dedicated server, first slot is reserved for the human on the server
-//	if( s_serveroptions.dedicated.curvalue == 0 ) {
-		// human
-		s_serveroptions.playerType[0].generic.flags |= QMF_INACTIVE;
-		s_serveroptions.playerType[0].curvalue = 0;
-		trap_Cvar_VariableStringBuffer( "name", s_serveroptions.playerNameBuffers[0], sizeof(s_serveroptions.playerNameBuffers[0]) );
-		Q_CleanStr( s_serveroptions.playerNameBuffers[0] );
-//	}
+	// The first slot is reserved for the human on the server
+	s_serveroptions.playerType[0].generic.flags |= QMF_INACTIVE;
+	s_serveroptions.playerType[0].curvalue = 0;
+	trap_Cvar_VariableStringBuffer( "name", s_serveroptions.playerNameBuffers[0], sizeof(s_serveroptions.playerNameBuffers[0]) );
+	Q_CleanStr( s_serveroptions.playerNameBuffers[0] );
 
 	// init teams
 	if( s_serveroptions.gametype >= GT_TEAM && s_serveroptions.gametype != GT_LMS ) {
