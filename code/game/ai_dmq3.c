@@ -1681,16 +1681,39 @@ void BotChooseWeapon(bot_state_t *bs) {
 		trap_EA_SelectWeapon(bs->client, bs->weaponnum);
 	}
 	else {
-                if(g_instantgib.integer)
-                    newweaponnum = WP_RAILGUN;
-                else if(g_rockets.integer)
-                    newweaponnum = WP_ROCKET_LAUNCHER;
-                else
+		if ( g_instantgib.integer == 1 || g_weaponarena.integer == 7 ) {
+			newweaponnum = WP_RAILGUN;
+		} else if ( g_weaponarena.integer == 5 ) {
+			newweaponnum = WP_ROCKET_LAUNCHER;
+		} else if ( g_weaponarena.integer == 1 ) {
+			newweaponnum = WP_GAUNTLET;
+		} else if ( g_weaponarena.integer == 2 ) {
+			newweaponnum = WP_MACHINEGUN;
+		} else if ( g_weaponarena.integer == 3 ) {
+			newweaponnum = WP_SHOTGUN;
+		} else if ( g_weaponarena.integer == 4 ) {
+			newweaponnum = WP_GRENADE_LAUNCHER;
+		} else if ( g_weaponarena.integer == 6 ) {
+			newweaponnum = WP_LIGHTNING;
+		} else if ( g_weaponarena.integer == 8 ) {
+			newweaponnum = WP_PLASMAGUN;
+		} else if ( g_weaponarena.integer == 9 ) {
+			newweaponnum = WP_BFG;
+		} else if ( g_weaponarena.integer == 10 ) {
+			newweaponnum = WP_NAILGUN;
+		} else if ( g_weaponarena.integer == 11 ) {
+			newweaponnum = WP_PROX_LAUNCHER;
+		} else if ( g_weaponarena.integer == 12 ) {
+			newweaponnum = WP_CHAINGUN;
+		}
+		else
                     newweaponnum = trap_BotChooseBestFightWeapon(bs->ws, bs->inventory);
-		if (bs->weaponnum != newweaponnum) bs->weaponchange_time = FloatTime();
-		bs->weaponnum = newweaponnum;
-		//BotAI_Print(PRT_MESSAGE, "bs->weaponnum = %d\n", bs->weaponnum);
-		trap_EA_SelectWeapon(bs->client, bs->weaponnum);
+		if (bs->weaponnum != newweaponnum) {
+			bs->weaponchange_time = FloatTime();
+			bs->weaponnum = newweaponnum;
+			//BotAI_Print(PRT_MESSAGE, "bs->weaponnum = %d\n", bs->weaponnum);
+			trap_EA_SelectWeapon(bs->client, bs->weaponnum);
+		}
 	}
 }
 

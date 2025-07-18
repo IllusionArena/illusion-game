@@ -140,6 +140,25 @@ static int gametype_remap2[] = {
 		10,
                 11 };		//this works and should increment for more gametypes
 
+
+static const char *s_weapon_names[] = {
+	"Off",
+	"Gauntlet",
+	"Machinegun",
+	"Shotgun",
+	"Grenade Launcher",
+	"Rocket Launcher",
+	"Lightning",
+	"Railgun",
+	"Plasmagun",
+	"BFG",
+	"Nailgun",
+	"Proximity Launcher",
+	"Chaingun",
+	"All Weapons",
+	NULL
+};
+
 static void UI_ServerOptionsMenu( qboolean multiplayer );
 
 
@@ -294,7 +313,7 @@ static void StartServer_Update( void ) {
 
 		// set the map name
 		info = UI_GetArenaInfoByNumber( s_startserver.maplist[ s_startserver.currentmap ]);
-		Q_strncpyz( s_startserver.mapname.string, Info_ValueForKey( info, "map" ), MAX_NAMELENGTH);
+		Q_strncpyz( s_startserver.mapname.string, Info_ValueForKey( info, "longname" ), MAX_NAMELENGTH);
 	}
 	
 	Q_strupr( s_startserver.mapname.string );
@@ -388,7 +407,6 @@ static void StartServer_MenuEvent( void* ptr, int event ) {
 		break;
 
             case ID_AUTONEXTMAP:
-                //trap_Cvar_SetValue( "cg_alwaysWeaponBar", s_preferences.alwaysweaponbar.curvalue );
                 trap_Cvar_SetValue( "g_autonextmap", s_startserver.autonextmap.curvalue );
                 break;
 
@@ -735,7 +753,7 @@ typedef struct {
         //Here are the elimination stuff
         menuradiobutton_s	oneway;
         menuradiobutton_s	instantgib;
-        menuradiobutton_s	rockets;
+        menulist_s	weaponarena;
 	menuradiobutton_s	cheats;
         menulist_s			lmsMode;
 	menulist_s			botSkill;
@@ -849,7 +867,7 @@ static void ServerOptions_Start( void ) {
         int             pmove;
         int             lan;
         int             instantgib;
-        int             rockets;
+        int             weaponarena;
 	int             cheats;
         int             oneway;
         int             lmsMode;
@@ -867,7 +885,7 @@ static void ServerOptions_Start( void ) {
         lan              = s_serveroptions.lan.curvalue;
         pmove            = s_serveroptions.pmove.curvalue;
         instantgib       = s_serveroptions.instantgib.curvalue;
-        rockets          = s_serveroptions.rockets.curvalue;
+        weaponarena          = s_serveroptions.weaponarena.curvalue;
 	cheats           = s_serveroptions.cheats.curvalue;
         oneway		 = s_serveroptions.oneway.curvalue;
         //Sago: For some reason you need to add 1 to curvalue to get the UI to show the right thing (fixed?)
@@ -957,7 +975,7 @@ static void ServerOptions_Start( void ) {
 	trap_Cvar_SetValue( "sv_pure", pure );
         trap_Cvar_SetValue( "sv_lanForceRate", lan );
         trap_Cvar_SetValue( "g_instantgib", instantgib );
-        trap_Cvar_SetValue( "g_rockets", rockets );
+        trap_Cvar_SetValue( "g_weaponarena", weaponarena );
         trap_Cvar_SetValue( "g_lms_mode", lmsMode);
         trap_Cvar_SetValue( "elimination_ctf_oneway", oneway );
         switch(pmove) {
@@ -1022,6 +1040,15 @@ static void ServerOptions_Start( void ) {
 	}
 }
 
+
+static void ServerOptions_UpdateMenuItems( void ) {
+	if ( s_serveroptions.instantgib.curvalue == 1 ) {
+		s_serveroptions.weaponarena.generic.flags |= QMF_GRAYED;
+		trap_Cvar_SetValue( "g_weaponarena", 0 );
+	} else {
+		s_serveroptions.weaponarena.generic.flags &= ~QMF_GRAYED;
+	}
+}
 
 /*
 =================
@@ -1200,11 +1227,11 @@ static void ServerOptions_StatusBar_Instantgib( void* ptr ) {
 
 /*
 =================
-ServerOptions_StatusBar_Allrockets
+ServerOptions_StatusBar_WeaponArena
 =================
 */
-static void ServerOptions_StatusBar_Allrockets( void* ptr ) {
-		UI_DrawString( 320, 440, "Only Rocket launcher with Inf. ammo", UI_CENTER|UI_SMALLFONT, colorWhite );
+static void ServerOptions_StatusBar_WeaponArena( void* ptr ) {
+		UI_DrawString( 320, 440, "Only one weapon with Inf. ammo", UI_CENTER|UI_SMALLFONT, colorWhite );
 }
 
 /*
@@ -1392,6 +1419,11 @@ static void ServerOptions_InitBotNames( void ) {
 }
 
 
+void ServerOptions_MenuDraw( void ) {
+	ServerOptions_UpdateMenuItems();
+	Menu_Draw( &s_serveroptions.menu );
+}
+
 /*
 =================
 ServerOptions_SetMenuItems
@@ -1478,7 +1510,7 @@ static void ServerOptions_SetMenuItems( void ) {
 	s_serveroptions.pure.curvalue = Com_Clamp( 0, 1, trap_Cvar_VariableValue( "sv_pure" ) );
         s_serveroptions.lan.curvalue = Com_Clamp( 0, 1, trap_Cvar_VariableValue( "sv_lanforcerate" ) );
         s_serveroptions.instantgib.curvalue = Com_Clamp( 0, 1, trap_Cvar_VariableValue( "g_instantgib" ) );
-        s_serveroptions.rockets.curvalue = Com_Clamp( 0, 1, trap_Cvar_VariableValue( "g_rockets" ) );
+        s_serveroptions.weaponarena.curvalue = Com_Clamp( 0, 1, trap_Cvar_VariableValue( "g_weaponarena" ) );
         s_serveroptions.lmsMode.curvalue = Com_Clamp( 0, 3, trap_Cvar_VariableValue("g_lms_mode") );
         s_serveroptions.oneway.curvalue = Com_Clamp( 0, 1, trap_Cvar_VariableValue( "elimination_ctf_oneway" ) );
         s_serveroptions.pmove.curvalue = 0;
@@ -1574,6 +1606,7 @@ static void ServerOptions_MenuInit( qboolean multiplayer ) {
 
 	s_serveroptions.menu.wrapAround = qtrue;
 	s_serveroptions.menu.fullscreen = qtrue;
+	s_serveroptions.menu.draw = ServerOptions_MenuDraw;
 
 	s_serveroptions.banner.generic.type			= MTYPE_BTEXT;
 	s_serveroptions.banner.generic.x			= 320;
@@ -1678,12 +1711,13 @@ static void ServerOptions_MenuInit( qboolean multiplayer ) {
         
         //Rockets option
         y += BIGCHAR_HEIGHT+2;
-	s_serveroptions.rockets.generic.type			= MTYPE_RADIOBUTTON;
-	s_serveroptions.rockets.generic.flags			= QMF_PULSEIFFOCUS|QMF_SMALLFONT;
-	s_serveroptions.rockets.generic.x				= OPTIONS_X;
-	s_serveroptions.rockets.generic.y				= y;
-	s_serveroptions.rockets.generic.name			= "All rockets:";
-        s_serveroptions.rockets.generic.statusbar  = ServerOptions_StatusBar_Allrockets;
+	s_serveroptions.weaponarena.generic.type			= MTYPE_SPINCONTROL;
+	s_serveroptions.weaponarena.generic.flags			= QMF_PULSEIFFOCUS|QMF_SMALLFONT;
+	s_serveroptions.weaponarena.generic.x				= OPTIONS_X;
+	s_serveroptions.weaponarena.generic.y				= y;
+	s_serveroptions.weaponarena.generic.name			= "Weapon Arena:";
+	s_serveroptions.weaponarena.itemnames			= s_weapon_names;
+        s_serveroptions.weaponarena.generic.statusbar  = ServerOptions_StatusBar_WeaponArena;
 
 
 	//Cheats option
@@ -1840,7 +1874,7 @@ static void ServerOptions_MenuInit( qboolean multiplayer ) {
 	}
 	Menu_AddItem( &s_serveroptions.menu, &s_serveroptions.pure );
         Menu_AddItem( &s_serveroptions.menu, &s_serveroptions.instantgib );
-        Menu_AddItem( &s_serveroptions.menu, &s_serveroptions.rockets );
+        Menu_AddItem( &s_serveroptions.menu, &s_serveroptions.weaponarena );
 	Menu_AddItem( &s_serveroptions.menu, &s_serveroptions.cheats );
         if( s_serveroptions.gametype == GT_LMS) {
             Menu_AddItem( &s_serveroptions.menu, &s_serveroptions.lmsMode );

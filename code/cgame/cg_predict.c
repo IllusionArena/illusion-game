@@ -269,7 +269,7 @@ static void CG_TouchItem( centity_t *cent ) {
 	//normally we can
 	canBePicked = qtrue;
 
-	//But in instantgib, rocket arena, and CTF_ELIMINATION we normally can't:
+	//But in instantgib, weapon arena, and CTF_ELIMINATION we normally can't:
 	if(cgs.nopickup || cgs.gametype == GT_CTF_ELIMINATION)
 		canBePicked = qfalse;
 

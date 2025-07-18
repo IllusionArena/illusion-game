@@ -129,7 +129,7 @@ vmCvar_t	g_elimination_nail;
 
 vmCvar_t        g_elimination_lockspectator;
 
-vmCvar_t	g_rockets;
+vmCvar_t	g_weaponarena;
 
 // dmn_clowns suggestions (with my idea of implementing):
 vmCvar_t	g_instantgib;
@@ -348,8 +348,8 @@ static cvarTable_t		gameCvarTable[] = {
         { &g_persistantpowerups, "g_runes", "0", CVAR_LATCH|CVAR_ARCHIVE, 0, qfalse },
         #endif
 
-	// Nexuiz style rocket arena
-	{ &g_rockets, "g_rockets", "0", CVAR_SERVERINFO | CVAR_LATCH | CVAR_NORESTART, 0, qfalse },
+	// Weapon Arena
+	{ &g_weaponarena, "g_weaponarena", "0", CVAR_SERVERINFO | CVAR_LATCH | CVAR_NORESTART, 0, qfalse },
 
 	// Instantgib and Vampire thingies
 	{ &g_instantgib, "g_instantgib", "0", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
@@ -616,7 +616,7 @@ void G_UpdateCvars( void ) {
                                     VoteParseCustomVotes();
 
                                 //Here comes the cvars that must trigger a map_restart
-                                if (cv->vmCvar == &g_instantgib || cv->vmCvar == &g_rockets  ||  cv->vmCvar == &g_elimination_allgametypes) {
+                                if (cv->vmCvar == &g_instantgib || cv->vmCvar == &g_weaponarena  ||  cv->vmCvar == &g_elimination_allgametypes) {
                                     trap_Cvar_Set("sv_dorestart","1");
                                 }
                                 
@@ -706,7 +706,7 @@ void G_InitGame( int levelTime, int randomSeed, int restart ) {
         if( g_gametype.integer == GT_SINGLE_PLAYER )
         {
             g_instantgib.integer = 0;
-            g_rockets.integer = 0;
+            g_weaponarena.integer = 0;
             g_vampire.value = 0.0f;
         }
 

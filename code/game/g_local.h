@@ -1074,7 +1074,7 @@ extern	vmCvar_t	g_elimination_nail;
 //If lockspectator: 0=no limit, 1 = cannot follow enemy, 2 = must follow friend
 extern  vmCvar_t        g_elimination_lockspectator;
 
-extern vmCvar_t		g_rockets;
+extern vmCvar_t		g_weaponarena;
 
 //new in elimination Beta2
 extern vmCvar_t		g_instantgib;

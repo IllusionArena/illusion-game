@@ -343,6 +343,11 @@ void RespawnItem( gentity_t *ent ) {
         //Don't spawn quad if quadfactor are 1.0 or less
         if(ent->item->giType == IT_POWERUP && ent->item->giTag == PW_QUAD && g_quadfactor.value <= 1.0)
             return;
+	
+	//Don't spawn quad if quadfactor is more than 5.0, either
+	if(ent->item->giType == IT_POWERUP && ent->item->giTag == PW_QUAD && g_quadfactor.value >= 5.0) {
+		return;
+	}
 
 	// randomly select from teamed entities
 	if (ent->team) {
@@ -416,7 +421,7 @@ void Touch_Item (gentity_t *ent, gentity_t *other, trace_t *trace) {
 	qboolean	predict;
 
 	//instant gib
-	if ((g_instantgib.integer || g_rockets.integer || g_gametype.integer == GT_CTF_ELIMINATION || g_elimination_allgametypes.integer)
+	if ((g_instantgib.integer || g_weaponarena.integer || g_gametype.integer == GT_CTF_ELIMINATION || g_elimination_allgametypes.integer)
                 && ent->item->giType != IT_TEAM)
 		return;
 
@@ -713,7 +718,7 @@ void FinishSpawningItem( gentity_t *ent ) {
 	
 	// powerups don't spawn in for a while (but not in elimination)
 	if(g_gametype.integer != GT_ELIMINATION && g_gametype.integer != GT_CTF_ELIMINATION && g_gametype.integer != GT_LMS 
-                && !g_instantgib.integer && !g_elimination_allgametypes.integer && !g_rockets.integer )
+                && !g_instantgib.integer && !g_elimination_allgametypes.integer && !g_weaponarena.integer )
 	if ( ent->item->giType == IT_POWERUP ) {
 		float	respawn;
 
@@ -822,17 +827,35 @@ ClearRegisteredItems
 void ClearRegisteredItems( void ) {
 	memset( itemRegistered, 0, sizeof( itemRegistered ) );
 
-	if(g_instantgib.integer) {
+	if(g_instantgib.integer || g_weaponarena.integer == 7) {
             if(g_instantgib.integer & 2)
                 RegisterItem( BG_FindItemForWeapon( WP_GAUNTLET ) );
             //RegisterItem( BG_FindItemForWeapon( WP_MACHINEGUN ) );
             RegisterItem( BG_FindItemForWeapon( WP_RAILGUN ) );
 	}
         else
-	if(g_rockets.integer) {
-		//RegisterItem( BG_FindItemForWeapon( WP_GAUNTLET ) );
-		//RegisterItem( BG_FindItemForWeapon( WP_MACHINEGUN ) );
+	if(g_weaponarena.integer == 5) {
 		RegisterItem( BG_FindItemForWeapon( WP_ROCKET_LAUNCHER ) );
+	} else if (g_weaponarena.integer == 1) {
+		RegisterItem( BG_FindItemForWeapon( WP_GAUNTLET ) );
+	} else if (g_weaponarena.integer == 2) {
+		RegisterItem( BG_FindItemForWeapon( WP_MACHINEGUN ) );
+	} else if (g_weaponarena.integer == 3) {
+		RegisterItem( BG_FindItemForWeapon( WP_SHOTGUN ) );
+	} else if (g_weaponarena.integer == 4) {
+		RegisterItem( BG_FindItemForWeapon( WP_GRENADE_LAUNCHER ) );
+	} else if (g_weaponarena.integer == 6) {
+		RegisterItem( BG_FindItemForWeapon( WP_LIGHTNING ) );
+	} else if (g_weaponarena.integer == 8) {
+		RegisterItem( BG_FindItemForWeapon( WP_PLASMAGUN ) );
+	} else if (g_weaponarena.integer == 9) {
+		RegisterItem( BG_FindItemForWeapon( WP_BFG ) );
+	} else if (g_weaponarena.integer == 10) {
+		RegisterItem( BG_FindItemForWeapon( WP_NAILGUN ) );
+	} else if (g_weaponarena.integer == 11) {
+		RegisterItem( BG_FindItemForWeapon( WP_PROX_LAUNCHER ) );
+	} else if (g_weaponarena.integer == 12) {
+		RegisterItem( BG_FindItemForWeapon( WP_CHAINGUN ) );
 	}
 	else
 	{
@@ -840,7 +863,7 @@ void ClearRegisteredItems( void ) {
 		RegisterItem( BG_FindItemForWeapon( WP_MACHINEGUN ) );
 		RegisterItem( BG_FindItemForWeapon( WP_GAUNTLET ) );
 		if(g_gametype.integer == GT_ELIMINATION || g_gametype.integer == GT_CTF_ELIMINATION 
-                        || g_gametype.integer == GT_LMS || g_elimination_allgametypes.integer)
+                        || g_gametype.integer == GT_LMS || g_elimination_allgametypes.integer || g_weaponarena.integer == 13)
 		{
 			RegisterItem( BG_FindItemForWeapon( WP_SHOTGUN ) );
 			RegisterItem( BG_FindItemForWeapon( WP_GRENADE_LAUNCHER ) );
@@ -945,7 +968,7 @@ void G_SpawnItem (gentity_t *ent, gitem_t *item) {
 	G_SpawnFloat( "random", "0", &ent->random );
 	G_SpawnFloat( "wait", "0", &ent->wait );
 
-	if((item->giType == IT_TEAM && (g_instantgib.integer || g_rockets.integer) ) || (!g_instantgib.integer && !g_rockets.integer) )
+	if((item->giType == IT_TEAM && (g_instantgib.integer || g_weaponarena.integer) ) || (!g_instantgib.integer && !g_weaponarena.integer) )
 	{
 		//Don't load pickups in Elimination (or maybe... gives warnings)
 		if (g_gametype.integer != GT_ELIMINATION && g_gametype.integer != GT_CTF_ELIMINATION && g_gametype.integer != GT_LMS)
@@ -968,7 +991,7 @@ void G_SpawnItem (gentity_t *ent, gitem_t *item) {
 	ent->physicsBounce = 0.50;		// items are bouncy
 
 	if (g_gametype.integer == GT_ELIMINATION || g_gametype.integer == GT_LMS || 
-			( item->giType != IT_TEAM && (g_instantgib.integer || g_rockets.integer || g_elimination_allgametypes.integer || g_gametype.integer==GT_CTF_ELIMINATION) ) ) {
+			( item->giType != IT_TEAM && (g_instantgib.integer || g_weaponarena.integer || g_elimination_allgametypes.integer || g_gametype.integer==GT_CTF_ELIMINATION) ) ) {
 		ent->s.eFlags |= EF_NODRAW; //Invisible in elimination
                 ent->r.svFlags |= SVF_NOCLIENT;  //Don't broadcast
         }

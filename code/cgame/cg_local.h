@@ -1119,7 +1119,7 @@ typedef struct {
 //Last Man Standing
 	int				lms_mode;
 
-//instantgib + nexuiz style rocket arena:
+//instantgib + weapon arena:
 	int				nopickup;
 
 //Double Domination DD

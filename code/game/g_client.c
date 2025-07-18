@@ -1992,22 +1992,56 @@ else
 	//	ent->health = client->ps.stats[STAT_HEALTH] = 0;
 }
 	//Instantgib mode, replace weapons with rail (and maybe gauntlet)
+	//alternatively, nailgun
 	if(g_instantgib.integer)
 	{
 		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_RAILGUN );
 		client->ps.ammo[WP_RAILGUN] = -1; //Don't display any ammo
-		if(g_instantgib.integer>1)
-		{
+		if(g_instantgib.integer == 2) {
 			 client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_GAUNTLET );
 	              	client->ps.ammo[WP_GAUNTLET] = -1;
 		}
+		if(g_instantgib.integer == 3) {
+			client->ps.stats[STAT_WEAPONS] = ( 1 << WP_NAILGUN );
+			client->ps.ammo[WP_NAILGUN] = -1;
+		}
 	}
-
-	//nexuiz style rocket arena (rocket launcher only)
-	if(g_rockets.integer) 
-	{
+        if (g_weaponarena.integer == 1) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_GAUNTLET );
+		client->ps.ammo[WP_GAUNTLET] = -1;
+	} else if (g_weaponarena.integer == 2) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_MACHINEGUN );
+		client->ps.ammo[WP_MACHINEGUN] = 999;
+	} else if (g_weaponarena.integer == 3) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_SHOTGUN );
+		client->ps.ammo[WP_SHOTGUN] = 999;
+	} else if (g_weaponarena.integer == 4) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_GRENADE_LAUNCHER );
+		client->ps.ammo[WP_GRENADE_LAUNCHER] = 999;
+	} else if (g_weaponarena.integer == 5) {
 		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_ROCKET_LAUNCHER );
-		client->ps.ammo[WP_ROCKET_LAUNCHER] = -1;
+		client->ps.ammo[WP_ROCKET_LAUNCHER] = 999;
+	} else if (g_weaponarena.integer == 6) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_LIGHTNING );
+		client->ps.ammo[WP_LIGHTNING] = 999;
+	} else if (g_weaponarena.integer == 7) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_RAILGUN );
+		client->ps.ammo[WP_RAILGUN] = 999;
+	} else if (g_weaponarena.integer == 8) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_PLASMAGUN );
+		client->ps.ammo[WP_PLASMAGUN] = 999;
+	} else if (g_weaponarena.integer == 9) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_BFG );
+		client->ps.ammo[WP_BFG] = 999;
+	} else if (g_weaponarena.integer == 10) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_NAILGUN );
+		client->ps.ammo[WP_NAILGUN] = 999;
+	} else if (g_weaponarena.integer == 11) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_PROX_LAUNCHER );
+		client->ps.ammo[WP_PROX_LAUNCHER] = 999;
+	} else if (g_weaponarena.integer == 12) {
+		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_CHAINGUN );
+		client->ps.ammo[WP_CHAINGUN] = 999;
 	}
 
 	G_SetOrigin( ent, spawn_origin );
