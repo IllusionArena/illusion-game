@@ -46,26 +46,37 @@ UI_CreditMenu_Draw
 */
 static void UI_CreditMenu_Draw( void ) {
 	int		y;
-	int		i;
 
-	static const char *names[] = {
-		"Izuru Yakumo (@IzuruYakumo)",
-		"Nishi (@NishiOwO)",
-		NULL
-	};
-
-	y = (SCREEN_HEIGHT - ARRAY_LEN(names) * (1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE)) / 2;
-
-	UI_DrawProportionalString( 320, y, "Illusion Arena developers:", UI_CENTER|UI_SMALLFONT, color_white );
+	y = 12;
+	UI_DrawProportionalString( 320, y, "Illusion Arena Team is:", UI_CENTER|UI_SMALLFONT, color_white );
+	
 	y += 1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Programming", UI_CENTER|UI_SMALLFONT, color_purple );
+	
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Izuru Yakumo, Nishi", UI_CENTER|UI_SMALLFONT, color_white );
+	y += 1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	
+	UI_DrawProportionalString( 320, y, "Art", UI_CENTER|UI_SMALLFONT, color_red );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Izuru Yakumo", UI_CENTER|UI_SMALLFONT, color_white );
 
-	for (i = 0; names[i]; i++) {
-		UI_DrawProportionalString( 320, y, names[i], UI_CENTER|UI_SMALLFONT, color_white );
-		y += 1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
-	}
-
-	UI_DrawString( 320, 449, "Visit our website at:", UI_CENTER|UI_SMALLFONT, color_yellow );
-	UI_DrawString( 320, 459, "http://illusion-arena.twilightparadox.com/", UI_CENTER|UI_SMALLFONT, color_yellow );
+	y += 1.42 * PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Thanks to:", UI_CENTER|UI_SMALLFONT, color_green );
+	
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Bishop-333 (OmegA)", UI_CENTER|UI_SMALLFONT, color_white );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "id Software for id Tech 3", UI_CENTER|UI_SMALLFONT, color_white );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "OpenArena Team", UI_CENTER|UI_SMALLFONT, color_white );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "[Runo] (@runo14 at ModDB)", UI_CENTER|UI_SMALLFONT, color_white );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "You!", UI_CENTER|UI_SMALLFONT, color_white );
+	
+	UI_DrawString( 320, 440, "Visit our website at:", UI_CENTER|UI_SMALLFONT, color_yellow );
+	UI_DrawString( 320, 460, "http://illusion-arena.twilightparadox.com/", UI_CENTER|UI_SMALLFONT, color_yellow );
 }
 
 /*
@@ -99,5 +110,4 @@ void UI_CreditMenu( void ) {
 	s_credits.menu.key = UI_CreditMenu_Key;
 	s_credits.menu.fullscreen = qtrue;
 	UI_PushMenu ( &s_credits.menu );
-        trap_Cmd_ExecuteText( EXEC_APPEND, "wait 2; quit\n" );
 }

@@ -57,6 +57,10 @@ vec4_t text_color_highlight = {1.00f, 1.00f, 0.00f, 1.00f};	// bright yellow
 vec4_t listbar_color        = {1.00f, 0.43f, 0.00f, 0.30f};	// transluscent orange
 vec4_t text_color_status    = {1.00f, 1.00f, 1.00f, 1.00f};	// bright white
 
+// New colors
+vec4_t color_green          = {0.00f, 0.50f, 0.00f, 1.00f};
+vec4_t color_purple         = {0.50f, 0.00f, 0.50f, 1.00f};
+
 // action widget
 static void	Action_Init( menuaction_s *a );
 static void	Action_Draw( menuaction_s *a );
