@@ -337,8 +337,9 @@ extern vec4_t		color_yellow;
 extern vec4_t		color_blue;
 extern vec4_t		color_orange;
 extern vec4_t		color_red;
-extern vec4_t		color_purple;
-extern vec4_t		color_green;
+extern vec4_t		color_purple; // Added by Illusion Arena
+extern vec4_t		color_green; // Added by Illusion Arena
+extern vec4_t		color_pink; // Added by Illusion Arena
 extern vec4_t		color_dim;
 extern vec4_t		name_color;
 extern vec4_t		list_color;
