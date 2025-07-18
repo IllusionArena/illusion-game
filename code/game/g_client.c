@@ -1987,23 +1987,14 @@ else
 	
 	ent->health = client->ps.stats[STAT_ARMOR] = g_elimination_startArmor.integer; //client->ps.stats[STAT_MAX_HEALTH]*2;
 	ent->health = client->ps.stats[STAT_HEALTH] = g_elimination_startHealth.integer; //client->ps.stats[STAT_MAX_HEALTH]*2;	
-
-	
-	//	ent->health = client->ps.stats[STAT_HEALTH] = 0;
 }
 	//Instantgib mode, replace weapons with rail (and maybe gauntlet)
-	//alternatively, nailgun
-	if(g_instantgib.integer)
-	{
+	if(g_instantgib.integer) {
 		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_RAILGUN );
 		client->ps.ammo[WP_RAILGUN] = -1; //Don't display any ammo
-		if(g_instantgib.integer == 2) {
+		if(g_instantgib.integer > 1) {
 			 client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_GAUNTLET );
-	              	client->ps.ammo[WP_GAUNTLET] = -1;
-		}
-		if(g_instantgib.integer == 3) {
-			client->ps.stats[STAT_WEAPONS] = ( 1 << WP_NAILGUN );
-			client->ps.ammo[WP_NAILGUN] = -1;
+			 client->ps.ammo[WP_GAUNTLET] = -1;
 		}
 	}
         if (g_weaponarena.integer == 1) {
