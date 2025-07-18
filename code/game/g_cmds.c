@@ -512,11 +512,15 @@ void Cmd_Give_f (gentity_t *ent)
 ==================
 Cmd_God_f
 
-Sets client to godmode
+Sets client to godmode, however
+if HERETIC_GODMODE is defined at compile time,
+it functions exactly like Raven Software's Heretic,
+killing the player.
 
 argv(0) god
 ==================
 */
+#ifndef HERETIC_GODMODE
 void Cmd_God_f (gentity_t *ent)
 {
 	char	*msg;
@@ -533,8 +537,19 @@ void Cmd_God_f (gentity_t *ent)
 
 	trap_SendServerCommand( ent-g_entities, va("print \"%s\"", msg));
 }
+#else
+void Cmd_God_f (gentity_t *ent)
+{
+	char *msg;
 
-
+	if ( !CheatsOk( ent ) ) {
+		return;
+	}
+	player_die (ent, ent, ent, 100000, MOD_TRIGGER_HURT);
+	msg = "You're not going to get away with this\n";
+	trap_SendServerCommand( ent-g_entities, va("print \"%s\"", msg));
+}
+#endif
 /*
 ==================
 Cmd_Notarget_f
