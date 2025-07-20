@@ -44,11 +44,11 @@ static const char *MonthAbbrev[] = {
 
 
 static const char *skillLevels[] = {
-  "I Can Win",
-  "Bring It On",
-  "Hurt Me Plenty",
-  "Hardcore",
-  "Nightmare"
+  "Beginner",
+  "Easy",
+  "Normal",
+  "Hard",
+  "Lunatic!"
 };
 
 static const int numSkillLevels = sizeof(skillLevels) / sizeof(const char*);
@@ -132,7 +132,7 @@ static char* netnames[] = {
 };
 
 #ifndef MISSIONPACK // bk001206
-static char quake3worldMessage[] = "Visit www.openarena.ws - News, Community, Events, Files";
+static char quake3worldMessage[] = "Visit illusion-arena.twilightparadox.com - News, Community, Events, Files";
 #endif
 
 static int gamecodetoui[] = {4,2,3,0,5,1,6};

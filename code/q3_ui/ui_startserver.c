@@ -802,15 +802,15 @@ static const char *playerTeam_list[] = {
 };
 
 static const char *botSkill_list[] = {
-	"I Can Win",
-	"Bring It On",
-	"Hurt Me Plenty",
-	"Hardcore",
-	"Nightmare!",
+	"Beginner",
+	"Easy",
+	"Normal",
+	"Hard",
+	"Lunatic!",
 	NULL
 };
 
-//Elimiantion - LMS mode
+//Elimination - LMS mode
 static const char *lmsMode_list[] = {
 	"Round+OT",
 	"Round-OT",
