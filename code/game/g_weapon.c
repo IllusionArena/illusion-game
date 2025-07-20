@@ -799,6 +799,10 @@ void Weapon_Nailgun_Fire (gentity_t *ent) {
 		m = fire_nail (ent, muzzle, forward, right, up );
 		m->damage *= s_quadFactor;
 		m->splashDamage *= s_quadFactor;
+
+		if (g_instantgib.integer > 2) {
+			m->damage = 800;
+		}
 	}
 
 //	VectorAdd( m->s.pos.trDelta, ent->client->ps.velocity, m->s.pos.trDelta );	// "real" physics

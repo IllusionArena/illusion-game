@@ -1699,7 +1699,7 @@ void BotChooseWeapon(bot_state_t *bs) {
 			newweaponnum = WP_PLASMAGUN;
 		} else if ( g_weaponarena.integer == 9 ) {
 			newweaponnum = WP_BFG;
-		} else if ( g_weaponarena.integer == 10 ) {
+		} else if ( g_instantgib.integer > 2 || g_weaponarena.integer == 10 ) {
 			newweaponnum = WP_NAILGUN;
 		} else if ( g_weaponarena.integer == 11 ) {
 			newweaponnum = WP_PROX_LAUNCHER;

@@ -1996,6 +1996,10 @@ else
 			 client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_GAUNTLET );
 			 client->ps.ammo[WP_GAUNTLET] = -1;
 		}
+		if(g_instantgib.integer > 2) {
+			client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_NAILGUN );
+			client->ps.ammo[WP_NAILGUN] = -1;
+		}
 	}
         if (g_weaponarena.integer == 1) {
 		client->ps.stats[STAT_WEAPONS] = ( 1 << WP_GAUNTLET );
