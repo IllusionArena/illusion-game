@@ -2256,7 +2256,7 @@ void CheckElimination(void) {
 			if((countsLiving[TEAM_BLUE]==0)&&(level.roundNumber==level.roundNumberStarted))
 			{
 				//Blue team has been eliminated!
-				trap_SendServerCommand( -1, "print \"Blue Team eliminated!\n\"");
+				trap_SendServerCommand( -1, "print \"^4Blue Team^7 eliminated!\n\"");
 				AddTeamScore(level.intermission_origin,TEAM_RED,1);
                                 if(g_gametype.integer == GT_ELIMINATION) {
                                     G_LogPrintf( "ELIMINATION: %i %i %i: %s wins round %i by eleminating the enemy team!\n", level.roundNumber, TEAM_RED, 1, TeamName(TEAM_RED), level.roundNumber );
@@ -2269,7 +2269,7 @@ void CheckElimination(void) {
 			else if((countsLiving[TEAM_RED]==0)&&(level.roundNumber==level.roundNumberStarted))
 			{
 				//Red team eliminated!
-				trap_SendServerCommand( -1, "print \"Red Team eliminated!\n\"");
+				trap_SendServerCommand( -1, "print \"^1Red Team^7 eliminated!\n\"");
 				AddTeamScore(level.intermission_origin,TEAM_BLUE,1);
                                 if(g_gametype.integer == GT_ELIMINATION) {
                                     G_LogPrintf( "ELIMINATION: %i %i %i: %s wins round %i by eleminating the enemy team!\n", level.roundNumber, TEAM_BLUE, 1, TeamName(TEAM_BLUE), level.roundNumber );
@@ -2303,7 +2303,7 @@ void CheckElimination(void) {
 				else if(((double)countsLiving[TEAM_RED])/((double)level.roundRedPlayers)>((double)countsLiving[TEAM_BLUE])/((double)level.roundBluePlayers))
 				{
 					//Red team has higher procentage survivors
-					trap_SendServerCommand( -1, "print \"Red team has most survivers!\n\"");
+					trap_SendServerCommand( -1, "print \"^1Red team^7 has most survivors!\n\"");
 					AddTeamScore(level.intermission_origin,TEAM_RED,1);
                                         if(g_gametype.integer == GT_ELIMINATION) {
                                             G_LogPrintf( "ELIMINATION: %i %i %i: %s wins round %i due to more survivors!\n", level.roundNumber, TEAM_RED, 2, TeamName(TEAM_RED), level.roundNumber );
@@ -2314,7 +2314,7 @@ void CheckElimination(void) {
 				else if(((double)countsLiving[TEAM_RED])/((double)level.roundRedPlayers)<((double)countsLiving[TEAM_BLUE])/((double)level.roundBluePlayers))
 				{
 					//Blue team has higher procentage survivors
-					trap_SendServerCommand( -1, "print \"Blue team has most survivers!\n\"");
+					trap_SendServerCommand( -1, "print \"^4Blue team^7 has most survivors!\n\"");
 					AddTeamScore(level.intermission_origin,TEAM_BLUE,1);	
                                         if(g_gametype.integer == GT_ELIMINATION) {
                                             G_LogPrintf( "ELIMINATION: %i %i %i: %s wins round %i due to more survivors!\n", level.roundNumber, TEAM_BLUE, 2, TeamName(TEAM_BLUE), level.roundNumber );
@@ -2325,7 +2325,7 @@ void CheckElimination(void) {
 				else if(countsHealth[TEAM_RED]>countsHealth[TEAM_BLUE])
 				{
 					//Red team has more health
-					trap_SendServerCommand( -1, "print \"Red team has more health left!\n\"");
+					trap_SendServerCommand( -1, "print \"^1Red team^7 has more health left!\n\"");
 					AddTeamScore(level.intermission_origin,TEAM_RED,1);
                                         if(g_gametype.integer == GT_ELIMINATION) {
                                             G_LogPrintf( "ELIMINATION: %i %i %i: %s wins round %i due to more health left!\n", level.roundNumber, TEAM_RED, 3, TeamName(TEAM_RED), level.roundNumber );
@@ -2336,7 +2336,7 @@ void CheckElimination(void) {
 				else if(countsHealth[TEAM_RED]<countsHealth[TEAM_BLUE])
 				{
 					//Blue team has more health
-					trap_SendServerCommand( -1, "print \"Blue team has more health left!\n\"");
+					trap_SendServerCommand( -1, "print \"^4Blue team^7 has more health left!\n\"");
 					AddTeamScore(level.intermission_origin,TEAM_BLUE,1);
                                         if(g_gametype.integer == GT_ELIMINATION) {
                                             G_LogPrintf( "ELIMINATION: %i %i %i: %s wins round %i due to more health left!\n", level.roundNumber, TEAM_BLUE, 3, TeamName(TEAM_BLUE), level.roundNumber );
