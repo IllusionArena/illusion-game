@@ -26,17 +26,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // q_shared.h -- included first by ALL program modules.
 // A user mod should never modify this file
 
-//#ifdef STANDALONE
-  #define PRODUCT_NAME			"ioq3+oa"
-  #define BASEGAME			"baseoa"
-  #define CLIENT_WINDOW_TITLE     	"OpenArena"
-  #define CLIENT_WINDOW_MIN_TITLE 	"OA"
-/*#else
-  #define PRODUCT_NAME			"ioq3"
-  #define BASEGAME			"baseq3"
-  #define CLIENT_WINDOW_TITLE     	"ioquake3"
-  #define CLIENT_WINDOW_MIN_TITLE 	"ioq3"
-#endif*/
+#define PRODUCT_NAME	"iogensokyo3"
+#define BASEGAME	"baseia"
+#define	CLIENT_WINDOW_TITLE "Illusion Arena"
+#define CLIENT_WINDOW_MIN_TITLE "IA"
 
 #ifdef _MSC_VER
   #define PRODUCT_VERSION "1.35"
