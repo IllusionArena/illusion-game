@@ -470,6 +470,11 @@ void ClientTimerActions( gentity_t *ent, int msec ) {
 			}
 		}
 
+		// New in Illusion Arena r33
+		// Regenerating armor
+		if ( client->ps.stats[STAT_ARMOR] < client->ps.stats[STAT_MAX_HEALTH] ) {
+			client->ps.stats[STAT_ARMOR]+=g_regen_armor.integer;
+		}
 		// count down armor when over max
 		if ( client->ps.stats[STAT_ARMOR] > client->ps.stats[STAT_MAX_HEALTH] ) {
 			client->ps.stats[STAT_ARMOR]--;

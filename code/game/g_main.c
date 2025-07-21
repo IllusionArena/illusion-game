@@ -137,6 +137,9 @@ vmCvar_t	g_vampire;
 vmCvar_t	g_vampireMaxHealth;
 // Regen
 vmCvar_t	g_regen;
+// New in Illusion Arena r33
+// Regenerating armor
+vmCvar_t	g_regen_armor;
 int	g_ffa_gt; // Are this a FFA gametype even if gametype is high?
 vmCvar_t	g_lms_lives;
 vmCvar_t	g_lms_mode;
@@ -355,6 +358,9 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_instantgib, "g_instantgib", "0", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse },
 	{ &g_vampire, "g_vampire", "0.0", CVAR_NORESTART, 0, qtrue },
 	{ &g_regen, "g_regen", "0", CVAR_NORESTART, 0, qtrue },
+	// New in Illusion Arena r33
+	// Regenerating armor
+	{ &g_regen_armor, "g_regen_armor", "0", CVAR_NORESTART, 0, qtrue },
 	{ &g_vampireMaxHealth, "g_vampire_max_health", "500", CVAR_NORESTART, 0, qtrue },
 	{ &g_lms_lives, "g_lms_lives", "1", CVAR_NORESTART, 0, qtrue },
 	{ &g_lms_mode, "g_lms_mode", "0", CVAR_SERVERINFO | CVAR_ARCHIVE | CVAR_NORESTART, 0, qtrue },

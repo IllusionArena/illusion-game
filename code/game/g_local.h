@@ -1082,6 +1082,9 @@ extern vmCvar_t		g_vampire;
 extern vmCvar_t		g_vampireMaxHealth;
 //new in elimination Beta3
 extern vmCvar_t		g_regen;
+// New in Illusion Arena r33
+// Regenerating armor
+extern vmCvar_t 	g_regen_armor;
 //Free for all gametype
 extern int		g_ffa_gt; //0 = TEAM GAME, 1 = FFA, 2 = TEAM GAME without bases
 
