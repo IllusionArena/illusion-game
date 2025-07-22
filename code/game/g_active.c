@@ -1308,7 +1308,9 @@ void ClientEndFrame( gentity_t *ent ) {
 	}
 
 	// burn from lava, etc
-	P_WorldEffects (ent);
+	if ( g_worldDamage.integer ) {
+		P_WorldEffects (ent);
+	}
 
 	// apply all the damage taken this frame
 	P_DamageFeedback (ent);

@@ -1085,6 +1085,8 @@ extern vmCvar_t		g_regen;
 // New in Illusion Arena r33
 // Regenerating armor
 extern vmCvar_t 	g_regen_armor;
+// New in Illusion Arena r42
+extern vmCvar_t		g_worldDamage;
 //Free for all gametype
 extern int		g_ffa_gt; //0 = TEAM GAME, 1 = FFA, 2 = TEAM GAME without bases
 
