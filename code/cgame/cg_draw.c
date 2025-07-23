@@ -625,7 +625,7 @@ static void CG_DrawStatusBar( void ) {
 				color = 2;	// dark grey
 			} else {
 				if ( value >= 0 ) {
-					color = 0;	// green
+					color = 0;	// yellow
 				} else {
 					color = 1;	// red
 				}
@@ -654,7 +654,7 @@ static void CG_DrawStatusBar( void ) {
 	if ( value > 100 ) {
 		trap_R_SetColor( colors[3] );		// white
 	} else if (value > 25) {
-		trap_R_SetColor( colors[0] );	// green
+		trap_R_SetColor( colors[0] );	// yellow
 	} else if (value > 0) {
 		color = (cg.time >> 8) & 1;	// flash
 		trap_R_SetColor( colors[color] );
