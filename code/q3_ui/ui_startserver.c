@@ -1048,6 +1048,11 @@ static void ServerOptions_UpdateMenuItems( void ) {
 	} else {
 		s_serveroptions.weaponarena.generic.flags &= ~QMF_GRAYED;
 	}
+	// Check for game modes involving flags
+	if ( s_serveroptions.gametype == GT_CTF || s_serveroptions.gametype == GT_1FCTF || s_serveroptions.gametype == GT_CTF_ELIMINATION) {
+		s_serveroptions.instantgib.generic.flags |= QMF_GRAYED;
+		s_serveroptions.weaponarena.generic.flags |= QMF_GRAYED;
+	}
 }
 
 /*
