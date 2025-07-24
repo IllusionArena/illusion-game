@@ -2201,6 +2201,7 @@ commands_t cmds[ ] =
 
   { "kill", CMD_TEAM|CMD_LIVING, Cmd_Kill_f },
   { "where", 0, Cmd_Where_f },
+  { "boots", CMD_LIVING, Cmd_Boots_f },
 
   // game commands
 

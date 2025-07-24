@@ -69,6 +69,8 @@ static void UI_CreditMenu_Draw( void ) {
 	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
 	UI_DrawProportionalString( 320, y, "Bishop-333 (OmegA)", UI_CENTER|UI_SMALLFONT, color_white );
 	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Burning (from Code3Arena)", UI_CENTER|UI_SMALLFONT, color_white );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
 	UI_DrawProportionalString( 320, y, "id Software for id Tech 3", UI_CENTER|UI_SMALLFONT, color_white );
 	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
 	UI_DrawProportionalString( 320, y, "Neil \"haste\" Toronto (Alternate Fire, Unlagged)", UI_CENTER|UI_SMALLFONT, color_white );

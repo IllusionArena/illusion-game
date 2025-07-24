@@ -694,8 +694,8 @@ Q3GOBJ_ = \
   $(B)/baseia/game/g_bot.o \
   $(B)/baseia/game/g_client.o \
   $(B)/baseia/game/g_cmds.o \
-  $(B)/baseia/game/g_cmds_cs.o \
   $(B)/baseia/game/g_cmds_ext.o \
+  $(B)/baseia/game/g_cmds_ia.o \
   $(B)/baseia/game/g_combat.o \
   $(B)/baseia/game/g_items.o \
   $(B)/baseia/game/bg_alloc.o \

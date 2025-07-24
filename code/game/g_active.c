@@ -961,6 +961,10 @@ void ClientThink_real( gentity_t *ent ) {
 
 	client->ps.gravity = g_gravity.value*g_gravityModifier.value;
 
+	if (ent->flags & FL_BOOTS) {
+	  client->ps.gravity = g_gravity.value * 0.20;
+	}
+	
 	// set speed
 	client->ps.speed = g_speed.value;
 

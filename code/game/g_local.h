@@ -57,6 +57,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define FL_DROPPED_ITEM			0x00001000
 #define FL_NO_BOTS				0x00002000	// spawn point not for bot use
 #define FL_NO_HUMANS			0x00004000	// spawn point just for bots
+#define FL_BOOTS			0x00006000	// anti-gravity boots (Burning)
 #define FL_FORCE_GESTURE		0x00008000	// force gesture on client
 
 // movers are things like doors, plats, buttons, etc
@@ -586,10 +587,6 @@ char *ConcatArgs( int start );  //KK-OAX This declaration moved from g_svccmds.c
 //KK-OAX Added this to make accessible from g_svcmds_ext.c
 void G_Say( gentity_t *ent, gentity_t *target, int mode, const char *chatText ); 
 
-// Adapted from CorkScrew
-// g_cmds_cs.c
-void Cmd_AddItem_f( gentity_t *ent );
-
 // KK-OAX Added these in a seperate file to keep g_cmds.c familiar. 
 // g_cmds_ext.c
 //
@@ -608,6 +605,12 @@ void        Cmd_AdminMessage_f( gentity_t *ent );
 int         G_ClientNumberFromString( char *s );
 qboolean    G_ClientIsLagging( gclient_t *client );
 void        SanitizeString( char *in, char *out );
+
+// 
+// g_cmds_ia.c
+//
+void Cmd_AddItem_f( gentity_t *ent );
+void Cmd_Boots_f( gentity_t *ent );
 
 // KK-OAX Added this for common file stuff between Admin and Sprees.
 // g_fileops.c
