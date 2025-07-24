@@ -586,6 +586,9 @@ char *ConcatArgs( int start );  //KK-OAX This declaration moved from g_svccmds.c
 //KK-OAX Added this to make accessible from g_svcmds_ext.c
 void G_Say( gentity_t *ent, gentity_t *target, int mode, const char *chatText ); 
 
+// Adapted from CorkScrew
+// g_cmds_cs.c
+void Cmd_AddItem_f( gentity_t *ent );
 
 // KK-OAX Added these in a seperate file to keep g_cmds.c familiar. 
 // g_cmds_ext.c

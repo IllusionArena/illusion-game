@@ -65,9 +65,13 @@ static void UI_CreditMenu_Draw( void ) {
 	UI_DrawProportionalString( 320, y, "Thanks to:", UI_CENTER|UI_SMALLFONT, color_green );
 	
 	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Arjen \"Firestarter\" van der Veen (CorkScrew)", UI_CENTER|UI_SMALLFONT, color_white );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
 	UI_DrawProportionalString( 320, y, "Bishop-333 (OmegA)", UI_CENTER|UI_SMALLFONT, color_white );
 	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
 	UI_DrawProportionalString( 320, y, "id Software for id Tech 3", UI_CENTER|UI_SMALLFONT, color_white );
+	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
+	UI_DrawProportionalString( 320, y, "Neil \"haste\" Toronto (Alternate Fire, Unlagged)", UI_CENTER|UI_SMALLFONT, color_white );
 	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;
 	UI_DrawProportionalString( 320, y, "OpenArena Team", UI_CENTER|UI_SMALLFONT, color_white );
 	y += PROP_HEIGHT * PROP_SMALL_SIZE_SCALE;

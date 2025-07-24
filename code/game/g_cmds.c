@@ -2191,6 +2191,7 @@ commands_t cmds[ ] =
   { "acc", CMD_INTERMISSION, Cmd_Acc_f},
 
   // cheats
+  { "additem", CMD_CHEAT|CMD_LIVING, Cmd_AddItem_f },
   { "give", CMD_CHEAT|CMD_LIVING, Cmd_Give_f },
   { "god", CMD_CHEAT|CMD_LIVING, Cmd_God_f },
   { "notarget", CMD_CHEAT|CMD_LIVING, Cmd_Notarget_f },

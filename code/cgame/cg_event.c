@@ -90,6 +90,9 @@ static void CG_Obituary( entityState_t *ent ) {
 	char		attackerName[32];
 	gender_t	gender;
 	clientInfo_t	*ci;
+	// NT - some randomness
+	static int seed = 0x4A;
+	int r;
 
 	target = ent->otherEntityNum;
 	attacker = ent->otherEntityNum2;
@@ -116,6 +119,9 @@ static void CG_Obituary( entityState_t *ent ) {
 
 	message2 = "";
 
+	//NT
+	r = abs( Q_rand( &seed ) ) % 3;
+
 	// check for single client messages
 
         if(attacker != ENTITYNUM_WORLD)
@@ -123,28 +129,76 @@ static void CG_Obituary( entityState_t *ent ) {
         else
             switch( mod ) {
             case MOD_SUICIDE:
-                    message = "suicides";
+		    if (r == 0) {
+			    message = "suicides";
+		    } else if (r == 1) {
+			    message = "escaped from this cruel world";
+		    } else if (r == 2) {
+			    message = "found the meaning of life by meeting death too soon";
+		    }
                     break;
             case MOD_FALLING:
-                    message = "cratered";
+		    if (r == 0) {
+			    message = "cratered";
+		    } else if (r == 1) {
+			    message = "fell off";
+		    } else if (r == 2) {
+			    message = "tried to do bungee jumping without safety measures";
+		    }
                     break;
             case MOD_CRUSH:
-                    message = "was squished";
+		    if (r == 0) {
+			    message = "was squished";
+		    } else if (r == 1) {
+			    message = "became some weird kind of bean paste";
+		    } else if (r == 2) {
+			    message = "couldn't out-speed the trap";
+		    }
                     break;
             case MOD_WATER:
-                    message = "sank like a rock";
+		    if (r == 0) {
+			    message = "sank like a rock";
+		    } else if (r == 1) {
+			    message = "ran out of air";
+		    } else if (r == 2) {
+			    message = "attempted to do scuba diving without an oxygen tank";
+		    }
                     break;
             case MOD_SLIME:
-                    message = "melted";
+		    if (r == 0) {
+			    message = "melted";
+		    } else if (r == 1) {
+			    message = "came into contact with acid";
+		    } else if (r == 2) {
+			    message = "got disintegrated by the acid";
+		    }
                     break;
             case MOD_LAVA:
-                    message = "does a back flip into the lava";
+		    if (r == 0) {
+			    message = "does a back flip into the lava";
+		    } else if (r == 1) {
+			    message = "became one with the environment itself";
+		    } else if (r == 2) {
+			    message = "met a tragic end";
+		    }
                     break;
             case MOD_TARGET_LASER:
-                    message = "saw the light";
+		    if (r == 0) {
+			    message = "saw the light";
+		    } else if (r == 1) {
+			    message = "was burned by the light";
+		    } else if (r == 2) {
+			    message = "should have not crossed the light's path";
+		    }
                     break;
             case MOD_TRIGGER_HURT:
-                    message = "was in the wrong place";
+		    if (r == 0) {
+			    message = "was in the wrong place";
+		    } else if (r == 1) {
+			    message = "was taken away by eldritch beings";
+		    } else if (r == 2) {
+			    message = "shouldn't have done that";
+		    }
                     break;
             default:
                     message = NULL;

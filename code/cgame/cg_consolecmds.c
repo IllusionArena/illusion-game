@@ -619,4 +619,8 @@ void CG_InitConsoleCommands( void ) {
 	trap_AddCommand ("stats");
 	trap_AddCommand ("teamtask");
 	trap_AddCommand ("loaddeferred");
+	//
+	// Adapted from CorkScrew
+	//
+	trap_AddCommand ("additem");
 }
